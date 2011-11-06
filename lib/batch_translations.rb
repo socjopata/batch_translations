@@ -19,6 +19,25 @@ module ActionView
 end
 
 module Globalize
+  module ActiveRecord
+    module InstanceMethods
+      def update_attributes_with_translations(options)
+        options.each do |key, value|
+          if key == "translations_attributes"
+            translated_attrs = {}
+            value.each do |rec_id, rec_value|
+              rec_value.delete("id")
+              translated_attrs[rec_value.delete("locale")] = rec_value
+            end
+            self.set_translations(translated_attrs)
+          else
+            self.update_attribute(key, value)
+          end
+        end
+      end
+    end
+  end
+
   module Model
     module ActiveRecord
       module Translated

@@ -1,1 +1,1 @@
-require 'batch_translation'
+require 'batch_translations'
