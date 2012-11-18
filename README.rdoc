@@ -26,6 +26,7 @@ so it'll look like
 
     accepts_nested_attributes_for :translations
     class Translation
+      attr_accessible :locale # mandatory to read a locale version that doesn't exist yet
       attr_accessible :title, :teaser, :body, :locale, as: :admin
     end
   end
