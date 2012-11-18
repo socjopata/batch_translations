@@ -23,7 +23,11 @@ so it'll look like
 
   class Post < ActiveRecord::Base
     translates :title, :teaser, :body
+
     accepts_nested_attributes_for :translations
+    class Translation
+      attr_accessible :title, :teaser, :body, :locale, as: :admin
+    end
   end
 
 It's necessary for proper working.
@@ -34,7 +38,7 @@ Now, use it in your view file, like in these below:
 
   <h1>Editing post</h1>
 
-  <% form_for(@post) do |f| %>
+  <%= form_for(@post) do |f| %>
     <%= f.error_messages %>
 
     <h2>English (default locale)</h2>
@@ -45,7 +49,7 @@ Now, use it in your view file, like in these below:
     <hr/>
 
     <h2>Spanish translation</h2>
-    <% f.globalize_fields_for :es do |g| %>
+    <%= f.globalize_fields_for :es do |g| %>
       <p><%= g.text_field :title %></p>
       <p><%= g.text_field :teaser %></p>
       <p><%= g.text_field :body %></p>
@@ -54,7 +58,7 @@ Now, use it in your view file, like in these below:
     <hr/>
 
     <h2>French translation</h2>
-    <% f.globalize_fields_for :fr do |g| %>
+    <%= f.globalize_fields_for :fr do |g| %>
       <p><%= g.text_field :title %></p>
       <p><%= g.text_field :teaser %></p>
       <p><%= g.text_field :body %></p>
