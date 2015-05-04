@@ -6,6 +6,7 @@ module ActionView
         @locale_index ||= {}
 
         if @locale_index[locale].nil?
+          @index = nil if @index.is_a?(String)
           @index = @index ? @index + 1 : 1
           @locale_index[locale] = @index
         else

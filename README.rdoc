@@ -68,6 +68,10 @@ Now, use it in your view file, like in these below:
     <%= f.submit "Save" %>
   <% end %>
 
+== This fork's changelog
+
+1. "Fixing" the indexing of fields for Rails 4, where they occasionally happened to be strings
+
 == License
 
 Copyright (c) 2010 Szymon Fiedler http://github.com/fidel, released under MIT License.
